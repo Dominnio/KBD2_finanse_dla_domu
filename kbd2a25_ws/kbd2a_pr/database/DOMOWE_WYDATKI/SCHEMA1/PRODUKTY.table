@@ -1,14 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <table xmlns="http://xmlns.oracle.com/jdeveloper/1211/offlinedb">
-  <name>KATEGORIE</name>
+  <name>PRODUKTY</name>
   <columns>
     <column>
-      <name>ID_KATEGORII</name>
+      <name>ID_PRODUKTU</name>
       <dataTypeUsage>
         <attributeValues>
           <entry>
             <key>precision</key>
-            <value class="java.lang.String">4</value>
+            <value class="java.lang.String">5</value>
           </entry>
         </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
@@ -19,21 +19,17 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">Klucz główny kategorii</value>
+          <value class="java.lang.String">Identyfikator produktu</value>
         </entry>
       </properties>
     </column>
     <column>
-      <name>NAZWA</name>
+      <name>KOD_PRODUKTU</name>
       <dataTypeUsage>
         <attributeValues>
           <entry>
             <key>size</key>
             <value class="java.lang.Long">50</value>
-          </entry>
-          <entry>
-            <key>unit</key>
-            <value class="java.lang.String">CHAR</value>
           </entry>
         </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
@@ -44,40 +40,40 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">Nazwa kategorii unikalna w ramach typu</value>
+          <value class="java.lang.String">Skrocona unikalna nazwa produktu</value>
         </entry>
       </properties>
     </column>
     <column>
-      <name>TYP</name>
+      <name>NAZWA</name>
       <dataTypeUsage>
         <attributeValues>
           <entry>
             <key>size</key>
-            <value class="java.lang.Long">1</value>
+            <value class="java.lang.Long">100</value>
           </entry>
         </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
-          <typeName>CHAR</typeName>
+          <typeName>VARCHAR2</typeName>
         </dataTypeID>
       </dataTypeUsage>
       <notNull>true</notNull>
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">O - typ operacji, Z - typ zakupu</value>
+          <value class="java.lang.String">Pelna nazwa produktu</value>
         </entry>
       </properties>
     </column>
   </columns>
   <constraints>
     <constraint class="oracle.javatools.db.PKConstraint">
-      <name>KATEGORIE_PK</name>
+      <name>PRODUKTY_PK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
-          <name>ID_KATEGORII</name>
+          <name>ID_PRODUKTU</name>
           <parent class="oracle.javatools.db.NameBasedID">
-            <name>KATEGORIE</name>
+            <name>PRODUKTY</name>
             <schemaName>SCHEMA1</schemaName>
             <type>TABLE</type>
           </parent>
@@ -87,9 +83,9 @@
       </columnIDs>
       <enabled>true</enabled>
       <indexID class="oracle.javatools.db.NameBasedID">
-        <name>KATEGORIE_PK</name>
+        <name>PRODUKTY_PK</name>
         <parent class="oracle.javatools.db.NameBasedID">
-          <name>KATEGORIE</name>
+          <name>PRODUKTY</name>
           <schemaName>SCHEMA1</schemaName>
           <type>TABLE</type>
         </parent>
@@ -98,22 +94,12 @@
       </indexID>
     </constraint>
     <constraint class="oracle.javatools.db.UniqueConstraint">
-      <name>KATEGORIE_UK1</name>
+      <name>PRODUKTY_UK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
-          <name>NAZWA</name>
+          <name>KOD_PRODUKTU</name>
           <parent class="oracle.javatools.db.NameBasedID">
-            <name>KATEGORIE</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>TYP</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>KATEGORIE</name>
+            <name>PRODUKTY</name>
             <schemaName>SCHEMA1</schemaName>
             <type>TABLE</type>
           </parent>
@@ -123,9 +109,9 @@
       </columnIDs>
       <enabled>true</enabled>
       <indexID class="oracle.javatools.db.NameBasedID">
-        <name>KATEGORIE_UK1</name>
+        <name>PRODUKTY_UK</name>
         <parent class="oracle.javatools.db.NameBasedID">
-          <name>KATEGORIE</name>
+          <name>PRODUKTY</name>
           <schemaName>SCHEMA1</schemaName>
           <type>TABLE</type>
         </parent>
@@ -133,18 +119,13 @@
         <type>INDEX</type>
       </indexID>
     </constraint>
-    <constraint class="oracle.javatools.db.CheckConstraint">
-      <name>KATEGORIE_CHK1</name>
-      <checkCondition>TYP IN (&apos;O&apos;, &apos;Z&apos;)</checkCondition>
-      <enabled>true</enabled>
-    </constraint>
   </constraints>
   <indexes>
     <index>
-      <name>KATEGORIE_PK</name>
+      <name>PRODUKTY_PK</name>
       <columnExpressions>
         <columnExpression>
-          <expressionSource>ID_KATEGORII</expressionSource>
+          <expressionSource>ID_PRODUKTU</expressionSource>
           <orderType>ASC</orderType>
         </columnExpression>
       </columnExpressions>
@@ -155,14 +136,10 @@
       <systemGenerated>true</systemGenerated>
     </index>
     <index>
-      <name>KATEGORIE_UK1</name>
+      <name>PRODUKTY_UK</name>
       <columnExpressions>
         <columnExpression>
-          <expressionSource>NAZWA</expressionSource>
-          <orderType>ASC</orderType>
-        </columnExpression>
-        <columnExpression>
-          <expressionSource>TYP</expressionSource>
+          <expressionSource>KOD_PRODUKTU</expressionSource>
           <orderType>ASC</orderType>
         </columnExpression>
       </columnExpressions>
@@ -176,7 +153,7 @@
   <properties>
     <entry>
       <key>Comment</key>
-      <value class="java.lang.String">Tabela przechowująca kategorie zakupów i operacji.</value>
+      <value class="java.lang.String">Tabela reprezentujaca wirtualne produkty</value>
     </entry>
     <entry>
       <key>TableType</key>

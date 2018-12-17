@@ -1,28 +1,7 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <table xmlns="http://xmlns.oracle.com/jdeveloper/1211/offlinedb">
-  <name>ZAKUPIONE_PRODUKTY</name>
+  <name>OPERACJE</name>
   <columns>
-    <column>
-      <name>ID_PRODUKTU</name>
-      <dataTypeUsage>
-        <attributeValues>
-          <entry>
-            <key>precision</key>
-            <value class="java.lang.String">5</value>
-          </entry>
-        </attributeValues>
-        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
-          <typeName>NUMBER</typeName>
-        </dataTypeID>
-      </dataTypeUsage>
-      <notNull>true</notNull>
-      <properties>
-        <entry>
-          <key>Comment</key>
-          <value class="java.lang.String">klucz obcy produktu</value>
-        </entry>
-      </properties>
-    </column>
     <column>
       <name>ID_OPERACJI</name>
       <dataTypeUsage>
@@ -40,7 +19,28 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">klucz obcy operacji</value>
+          <value class="java.lang.String">Klucz glowny operacji</value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>ID_ZRODLA</name>
+      <dataTypeUsage>
+        <attributeValues>
+          <entry>
+            <key>precision</key>
+            <value class="java.lang.String">2</value>
+          </entry>
+        </attributeValues>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>NUMBER</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">Klucz obcy zrodla srodkow</value>
         </entry>
       </properties>
     </column>
@@ -61,17 +61,32 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">klucz obcy kategorii</value>
+          <value class="java.lang.String">Klucz obcy kategorii operacji</value>
         </entry>
       </properties>
     </column>
     <column>
-      <name>KOSZT</name>
+      <name>DATA_OPERACJI</name>
+      <dataTypeUsage>
+        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
+          <typeName>DATE</typeName>
+        </dataTypeID>
+      </dataTypeUsage>
+      <notNull>true</notNull>
+      <properties>
+        <entry>
+          <key>Comment</key>
+          <value class="java.lang.String">Data zaksiegowania operacji lub wydania gotowki</value>
+        </entry>
+      </properties>
+    </column>
+    <column>
+      <name>KWOTA</name>
       <dataTypeUsage>
         <attributeValues>
           <entry>
             <key>precision</key>
-            <value class="java.lang.String">10</value>
+            <value class="java.lang.String">8</value>
           </entry>
           <entry>
             <key>scale</key>
@@ -86,38 +101,21 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">całkowity koszt produktów o id id_produktu dla operacji</value>
+          <value class="java.lang.String">Suma pieniedzy w operacji</value>
         </entry>
       </properties>
     </column>
     <column>
-      <name>ILOSC</name>
-      <dataTypeUsage>
-        <attributeValues>
-          <entry>
-            <key>precision</key>
-            <value class="java.lang.String">4</value>
-          </entry>
-        </attributeValues>
-        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
-          <typeName>NUMBER</typeName>
-        </dataTypeID>
-      </dataTypeUsage>
-      <notNull>false</notNull>
-      <properties>
-        <entry>
-          <key>Comment</key>
-          <value class="java.lang.String">ilość (liczba) produktu</value>
-        </entry>
-      </properties>
-    </column>
-    <column>
-      <name>JEDNOSTKA</name>
+      <name>OPIS</name>
       <dataTypeUsage>
         <attributeValues>
           <entry>
             <key>size</key>
-            <value class="java.lang.Long">5</value>
+            <value class="java.lang.Long">150</value>
+          </entry>
+          <entry>
+            <key>unit</key>
+            <value class="java.lang.String">CHAR</value>
           </entry>
         </attributeValues>
         <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
@@ -128,54 +126,19 @@
       <properties>
         <entry>
           <key>Comment</key>
-          <value class="java.lang.String">jednostka w jakiej podana jest ilość produktu, w przypadku liczby - szt</value>
-        </entry>
-      </properties>
-    </column>
-    <column>
-      <name>CENA</name>
-      <dataTypeUsage>
-        <attributeValues>
-          <entry>
-            <key>precision</key>
-            <value class="java.lang.String">10</value>
-          </entry>
-          <entry>
-            <key>scale</key>
-            <value class="java.lang.Integer">2</value>
-          </entry>
-        </attributeValues>
-        <dataTypeID class="oracle.javatools.db.datatypes.DataTypeID">
-          <typeName>NUMBER</typeName>
-        </dataTypeID>
-      </dataTypeUsage>
-      <notNull>false</notNull>
-      <properties>
-        <entry>
-          <key>Comment</key>
-          <value class="java.lang.String">cena pojedynczego prododuktu (jednostki wagi)</value>
+          <value class="java.lang.String">Dodatkowe informacje, np. odbiorca operacji</value>
         </entry>
       </properties>
     </column>
   </columns>
   <constraints>
     <constraint class="oracle.javatools.db.PKConstraint">
-      <name>ZAKUPIONE_PRODUKTY_PK</name>
+      <name>OPERACJE_PK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
           <name>ID_OPERACJI</name>
           <parent class="oracle.javatools.db.NameBasedID">
-            <name>ZAKUPIONE_PRODUKTY</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>ID_PRODUKTU</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>ZAKUPIONE_PRODUKTY</name>
+            <name>OPERACJE</name>
             <schemaName>SCHEMA1</schemaName>
             <type>TABLE</type>
           </parent>
@@ -185,9 +148,9 @@
       </columnIDs>
       <enabled>true</enabled>
       <indexID class="oracle.javatools.db.NameBasedID">
-        <name>ZAKUPIONE_PRODUKTY_PK</name>
+        <name>OPERACJE_PK</name>
         <parent class="oracle.javatools.db.NameBasedID">
-          <name>ZAKUPIONE_PRODUKTY</name>
+          <name>OPERACJE</name>
           <schemaName>SCHEMA1</schemaName>
           <type>TABLE</type>
         </parent>
@@ -196,64 +159,12 @@
       </indexID>
     </constraint>
     <constraint class="oracle.javatools.db.FKConstraint">
-      <name>ZAKUPIONE_PRODUKTY_FK1</name>
-      <columnIDs>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>ID_PRODUKTU</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>ZAKUPIONE_PRODUKTY</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-      </columnIDs>
-      <enabled>true</enabled>
-      <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>PRODUKTY_PK</name>
-        <parent class="oracle.javatools.db.NameBasedID">
-          <name>PRODUKTY</name>
-          <schemaName>SCHEMA1</schemaName>
-          <type>TABLE</type>
-        </parent>
-        <schemaName>SCHEMA1</schemaName>
-        <type>CONSTRAINT</type>
-      </referenceID>
-    </constraint>
-    <constraint class="oracle.javatools.db.FKConstraint">
-      <name>ZAKUPIONE_PRODUKTY_FK2</name>
-      <columnIDs>
-        <columnID class="oracle.javatools.db.NameBasedID">
-          <name>ID_OPERACJI</name>
-          <parent class="oracle.javatools.db.NameBasedID">
-            <name>ZAKUPIONE_PRODUKTY</name>
-            <schemaName>SCHEMA1</schemaName>
-            <type>TABLE</type>
-          </parent>
-          <schemaName>SCHEMA1</schemaName>
-          <type>COLUMN</type>
-        </columnID>
-      </columnIDs>
-      <enabled>true</enabled>
-      <referenceID class="oracle.javatools.db.NameBasedID">
-        <name>OPERACJE_PK</name>
-        <parent class="oracle.javatools.db.NameBasedID">
-          <name>OPERACJE</name>
-          <schemaName>SCHEMA1</schemaName>
-          <type>TABLE</type>
-        </parent>
-        <schemaName>SCHEMA1</schemaName>
-        <type>CONSTRAINT</type>
-      </referenceID>
-    </constraint>
-    <constraint class="oracle.javatools.db.FKConstraint">
-      <name>ZAKUPIONE_PRODUKTY_FK3</name>
+      <name>OPERACJE_KATEGORIE_FK1</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
           <name>ID_KATEGORII</name>
           <parent class="oracle.javatools.db.NameBasedID">
-            <name>ZAKUPIONE_PRODUKTY</name>
+            <name>OPERACJE</name>
             <schemaName>SCHEMA1</schemaName>
             <type>TABLE</type>
           </parent>
@@ -273,10 +184,36 @@
         <type>CONSTRAINT</type>
       </referenceID>
     </constraint>
+    <constraint class="oracle.javatools.db.FKConstraint">
+      <name>OPERACJE_ZRODLA_SRODKOW_FK1</name>
+      <columnIDs>
+        <columnID class="oracle.javatools.db.NameBasedID">
+          <name>ID_ZRODLA</name>
+          <parent class="oracle.javatools.db.NameBasedID">
+            <name>OPERACJE</name>
+            <schemaName>SCHEMA1</schemaName>
+            <type>TABLE</type>
+          </parent>
+          <schemaName>SCHEMA1</schemaName>
+          <type>COLUMN</type>
+        </columnID>
+      </columnIDs>
+      <enabled>true</enabled>
+      <referenceID class="oracle.javatools.db.NameBasedID">
+        <name>ZRODLA_SRODKOW_PK</name>
+        <parent class="oracle.javatools.db.NameBasedID">
+          <name>ZRODLA_SRODKOW</name>
+          <schemaName>SCHEMA1</schemaName>
+          <type>TABLE</type>
+        </parent>
+        <schemaName>SCHEMA1</schemaName>
+        <type>CONSTRAINT</type>
+      </referenceID>
+    </constraint>
   </constraints>
   <indexes>
     <index>
-      <name>ZAKUPIONE_PRODUKTY_KAT_IDX</name>
+      <name>OPERACJE_KATEGORIE_IDX</name>
       <columnExpressions>
         <columnExpression>
           <expressionSource>ID_KATEGORII</expressionSource>
@@ -289,14 +226,10 @@
       <systemGenerated>false</systemGenerated>
     </index>
     <index>
-      <name>ZAKUPIONE_PRODUKTY_PK</name>
+      <name>OPERACJE_PK</name>
       <columnExpressions>
         <columnExpression>
           <expressionSource>ID_OPERACJI</expressionSource>
-          <orderType>ASC</orderType>
-        </columnExpression>
-        <columnExpression>
-          <expressionSource>ID_PRODUKTU</expressionSource>
           <orderType>ASC</orderType>
         </columnExpression>
       </columnExpressions>
@@ -307,10 +240,10 @@
       <systemGenerated>true</systemGenerated>
     </index>
     <index>
-      <name>ZAKUPIONE_PRODUKTY_PR_IDX</name>
+      <name>OPERACJE_ZRODLA_IDX</name>
       <columnExpressions>
         <columnExpression>
-          <expressionSource>ID_PRODUKTU</expressionSource>
+          <expressionSource>ID_ZRODLA</expressionSource>
         </columnExpression>
       </columnExpressions>
       <indexType>NORMAL</indexType>
@@ -323,7 +256,7 @@
   <properties>
     <entry>
       <key>Comment</key>
-      <value class="java.lang.String">Tabela przechowująca produkty zakupione w ramach operacji.</value>
+      <value class="java.lang.String">Tabela przechowująca operacje na kontach i gotówce.</value>
     </entry>
     <entry>
       <key>TableType</key>

@@ -50,7 +50,7 @@
         <attributeValues>
           <entry>
             <key>precision</key>
-            <value class="java.lang.String">10</value>
+            <value class="java.lang.String">8</value>
           </entry>
           <entry>
             <key>scale</key>
@@ -98,7 +98,7 @@
       </indexID>
     </constraint>
     <constraint class="oracle.javatools.db.UniqueConstraint">
-      <name>ZRODLA_SRODKOW_UK1</name>
+      <name>ZRODLA_SRODKOW_UK</name>
       <columnIDs>
         <columnID class="oracle.javatools.db.NameBasedID">
           <name>NAZWA</name>
@@ -113,7 +113,7 @@
       </columnIDs>
       <enabled>true</enabled>
       <indexID class="oracle.javatools.db.NameBasedID">
-        <name>ZRODLA_SRODKOW_UK1</name>
+        <name>ZRODLA_SRODKOW_UK</name>
         <parent class="oracle.javatools.db.NameBasedID">
           <name>ZRODLA_SRODKOW</name>
           <schemaName>SCHEMA1</schemaName>
@@ -140,7 +140,7 @@
       <systemGenerated>true</systemGenerated>
     </index>
     <index>
-      <name>ZRODLA_SRODKOW_UK1</name>
+      <name>ZRODLA_SRODKOW_UK</name>
       <columnExpressions>
         <columnExpression>
           <expressionSource>NAZWA</expressionSource>
