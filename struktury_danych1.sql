@@ -216,3 +216,4 @@ COMMENT ON COLUMN ZRODLA_SRODKOW.ID_ZRODLA IS 'Klucz glowny zrodla, identyfikato
 COMMENT ON COLUMN ZRODLA_SRODKOW.NAZWA IS 'Unikalna nazwa zrodla';
 
 COMMENT ON COLUMN ZRODLA_SRODKOW.STAN_SRODKOW IS 'Stan srodkow zgodny ze stanem faktycznym ';
+

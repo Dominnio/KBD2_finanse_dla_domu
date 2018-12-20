@@ -32,9 +32,3 @@ INSERT INTO produkty(kod_produktu, nazwa) VALUES('KOSZ','Koszula');
 
 INSERT INTO zakupione_produkty(id_produktu, id_operacji, id_kategorii, ilosc, koszt) VALUES(sekwencja_produkty.CURRVAL, sekwencja_operacje.CURRVAL, sekwencja_kategorie.CURRVAL, 2, 220.50);
 COMMIT;
-
-
-
-
-
-
