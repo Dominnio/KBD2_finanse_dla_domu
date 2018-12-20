@@ -123,3 +123,8 @@ CREATE OR REPLACE VIEW wydatki_kat_operacji AS
 SELECT SUM(o.kwota) AS wydatki, k.nazwa AS kategoria FROM operacje o
 JOIN kategorie k ON o.id_kategorii = k.id_kategorii
 GROUP BY k.nazwa;
+
+create or replace view OPERACJE_PRODUKTY AS
+SELECT p.nazwa AS produkt, k.nazwa as kategoria, o.data_operacji as data, o.opis AS opis, z.ilosc, z.koszt FROM zakupione_produkty z, produkty p,
+kategorie k, operacje o where o.id_kategorii = k.id_kategorii and z.id_produktu = p.id_produktu and z.id_operacji = o.id_operacji;
+
